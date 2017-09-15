@@ -1,0 +1,26 @@
+From f3166418d4cd523607ddd6943ed43bb8363e68a1 Mon Sep 17 00:00:00 2001
+From: root <root@bbvlpc15.bbvl.local>
+Date: Tue, 12 Sep 2017 17:05:07 +0200
+Subject: [PATCH 2/2] fixed docker exit 0
+
+---
+ jedox-suite.sh | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/jedox-suite.sh b/jedox-suite.sh
+index dad6f25..7fda33e 100755
+--- a/jedox-suite.sh
++++ b/jedox-suite.sh
+@@ -417,6 +417,9 @@ start() {
+ 			done_or_fail "$INIT_HTTPD start"
+ 		fi
+ 	fi
++
++	# Zeigt permanent Logs an und hält docker container offen
++	tail -f $INSTALL_PATH/log/*.log $INSTALL_PATH/log/tomcat/*.log
+     
+     if [ "$LAUNCH_SUPERVISE" -eq "1" ]; then
+         try_to_get_svscan_pid=$( ps -o pid,cmd ax | grep '/usr/bin/svscan' | grep -v grep | awk ' { print $1 }')
+-- 
+2.13.5
+

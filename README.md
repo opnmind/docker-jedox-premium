@@ -1,1 +1,0 @@
-# docker-jedox-premium

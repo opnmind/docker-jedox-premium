@@ -1,0 +1,41 @@
+version: "3"
+# docker-compose build --force-rm --no-cache
+
+services:
+  jedox:
+    build: jedox
+    image: opnmind/jedox
+    network_mode: bridge
+    command: /opt/jedox/ps/jedox-suite.sh start
+    ports:
+      #HOST:CONTAINER
+      - "7777:7777"
+      - "7779:7779"
+      - "7775:7775"
+      - "8080:80"
+      - "8443:443"
+    privileged: true
+    restart: on-failure
+    container_name: jedox7
+    volumes:
+      - jedox-data:/opt/jedox/ps/Data
+      - jedox-log:/opt/jedox/ps/log
+      - jedox-storage:/opt/jedox/ps/storage
+      - jedox-etl:/opt/jedox/ps/tomcat/webapps/etlserver/data
+    #entrypoint: /bin/bash
+    #stdin_open: true
+    #tty: true
+
+volumes:
+  jedox-data:
+    driver: "local"
+    #https://github.com/CWSpear/local-persist
+    #driver: local-persist
+    #driver_opts:
+    #  mountpoint: /data/local-persist/data
+  jedox-log:
+    driver: "local"
+  jedox-storage:
+    driver: "local"
+  jedox-etl:
+    driver: "local"
