@@ -1,5 +1,5 @@
 From f3166418d4cd523607ddd6943ed43bb8363e68a1 Mon Sep 17 00:00:00 2001
-From: root <root@bbvlpc15.bbvl.local>
+From: root <root@local>
 Date: Tue, 12 Sep 2017 17:05:07 +0200
 Subject: [PATCH 2/2] fixed docker exit 0
 
