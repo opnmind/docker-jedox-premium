@@ -3,7 +3,9 @@ version: "3"
 
 services:
   jedox:
-    build: jedox
+    build: 
+	  context: ./jedox
+	  dockerfile: Dockerfile_Jedox7.1
     image: opnmind/jedox
     network_mode: bridge
     command: /opt/jedox/ps/jedox-suite.sh start
